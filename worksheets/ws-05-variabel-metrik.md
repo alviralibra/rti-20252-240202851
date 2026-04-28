@@ -66,19 +66,20 @@ Metrik harus ditentukan **sebelum** eksperimen. Memilih metrik setelah melihat d
 ```
 VARIABLE & METRIC DEFINITION
 
-Research Question: ____________________
+**Research Question:**
+Bagaimana perbandingan efisiensi kognitif (Time on Task) dan kepuasan pengguna (SUS) antara alur checkout Single-Screen (GoFood) dan Multi-Step (GrabFood) pada generasi Z?
 
 | Variabel | Tipe | Konsep | Metrik | Skala | Satuan | Cara Mengukur | Justifikasi |
 |----------|------|--------|--------|-------|--------|---------------|-------------|
-|          | IV   |        |        |       |        |               |             |
-|          | DV   |        |        |       |        |               |             |
-|          | CV   |        |        |       |        |               |             |
+| User Flow Design | IV | Strategi penyajian informasi di layar | Tipe Alur (Single vs Multi) | Nominal | - | Observasi struktur halaman checkout Gojek & Grab | Variabel bebas yang dimanipulasi untuk melihat perbedaan hasil. |
+| Cognitive Efficiency | DV | Kecepatan proses berpikir & bertindak | Time on Task | Ratio | Detik | Rekaman layar dari klik keranjang sampai tombol bayar | Indikator objektif paling valid untuk mengukur efisiensi sistem. |
+| Internet Stability | CV | Kecepatan transmisi data | Kecepatan Bandwidth | Ratio | Mbps | Melakukan Speedtest sebelum eksperimen dimulai | Memastikan perbedaan waktu bukan karena loading aplikasi yang lambat. |
 
 Alignment Check:
   RQ → Concept → Variable → Metric → Data → Result
-  [ ] Setiap langkah terdokumentasi
-  [ ] Tidak ada "lompatan logis"
-  [ ] Metrik mengukur apa yang dimaksud (construct validity)
+  [X] Setiap langkah terdokumentasi
+  [X] Tidak ada "lompatan logis"
+  [X] Metrik mengukur apa yang dimaksud (construct validity)
 ```
 
 ---
@@ -87,16 +88,16 @@ Alignment Check:
 
 Gunakan RQ dari WS-04. Definisikan variabel dan metriknya.
 
-**RQ:** __________________________________________________
+**RQ:** Bagaimana perbandingan efisiensi kognitif berdasarkan metrik Time on Task dan skor SUS antara alur checkout GoFood (Single-Screen) dan GrabFood (Multi-Step) pada pengguna generasi Z di Indonesia?
 
 | Variabel | Tipe | Konsep Abstrak | Metrik Konkret | Skala (NOIR) | Satuan |
-|----------|------|---------------|----------------|-------------|--------|
-| *Contoh: Jenis model* | *IV* | *Pendekatan klasifikasi* | *Categorical: CNN vs RF* | *Nominal* | *—* |
-| | DV | | | | |
-| | CV | | | | |
+|----------|------|----------------|----------------|--------------|--------|
+| Model Alur | IV | Strategi Desain UI | Single-Screen vs Multi-Step | Nominal | — |
+| Efisiensi & Kepuasan | DV | Performa & Persepsi | Time on Task & Skor SUS | Ratio & Ordinal | Detik & Skor |
+| Koneksi Internet | CV | Stabilitas Sistem | Bandwidth Kecepatan | Ratio | Mbps |
 
-**Apakah ada lompatan logis dalam rantai?** [ ] Ya / [ ] Tidak
-> Jika ya, di mana? ____________________________________
+**Apakah ada lompatan logis dalam rantai?** [ ] Ya / [X] Tidak
+> Jika ya, di mana? —
 
 ---
 
@@ -106,15 +107,15 @@ Evaluasi metrik DV yang dipilih di Latihan 1 menggunakan 3 kriteria.
 
 | Kriteria | Skor (1-5) | Justifikasi |
 |----------|-----------|-------------|
-| Representative | *Contoh: 4 — F1-Score mewakili keseimbangan precision-recall* | |
-| Sensitive | | |
-| Feasible | | |
+| Representative | 5 | Time on Task secara langsung mewakili konsep efisiensi kognitif dalam menyelesaikan tugas checkout. |
+| Sensitive | 4 | Metrik ini sangat peka dalam menangkap perbedaan kecepatan navigasi sekecil apapun dalam satuan detik. |
+| Feasible | 5 | Data sangat mudah dikumpulkan melalui fitur screen recording pada smartphone responden tanpa alat tambahan. |
 
-**Apakah perlu secondary metric?** [ ] Ya / [ ] Tidak
-> Jika ya, apa dan mengapa? _____________________________
+**Apakah perlu secondary metric?** [X] Ya / [ ] Tidak
+> Jika ya, apa dan mengapa? Analisis Temuan RTA (Retrospective Think Aloud), karena angka waktu saja tidak bisa menjelaskan alasan kualitatif mengapa pengguna mengalami hambatan di titik tertentu.
 
 **Contoh kasus ceiling effect untuk metrik ini:**
-> ___________________________________________________
+Jika tugas yang diberikan terlalu sederhana (misal: hanya menekan satu tombol), semua responden akan menyelesaikannya dalam waktu yang hampir sama cepatnya, sehingga perbedaan efisiensi antar desain tidak akan terlihat.
 
 ---
 
@@ -124,10 +125,10 @@ Bayangkan data yang akan dikumpulkan dari eksperimen. Evaluasi 4 dimensi kualita
 
 | Dimensi | Pertanyaan | Jawaban | Strategi Mitigasi |
 |---------|-----------|---------|------------------|
-| Completeness | *Apakah semua data point terkumpul?* | | |
-| Consistency | *Apakah ada kontradiksi internal?* | | |
-| Validity | *Apakah benar-benar mengukur yang dimaksud?* | | |
-| Representativeness | *Apakah sampel mewakili populasi target?* | | |
+| Completeness | Apakah semua data point terkumpul? | Ya | Memastikan setiap sesi dari 23 responden menghasilkan video rekaman yang utuh dan kuesioner SUS yang terisi lengkap sebelum sesi berakhir. |
+| Consistency | Apakah ada kontradiksi internal? | Tidak | Menggunakan skenario tugas (Task Scenario) yang sama persis dan instruksi yang seragam untuk setiap responden. |
+| Validity | Apakah benar-benar mengukur yang dimaksud? | Ya | Memulai penghitungan waktu (Time on Task) tepat saat responden masuk ke halaman checkout untuk menjaga fokus pengukuran pada alur kerja mikro. |
+| Representativeness | Apakah sampel mewakili populasi target? | Ya | Melakukan screening ketat untuk memastikan 23 responden adalah pengguna aktif layanan food delivery yang masuk dalam kategori generasi Z. |
 
 ---
 
@@ -136,5 +137,4 @@ Bayangkan data yang akan dikumpulkan dari eksperimen. Evaluasi 4 dimensi kualita
 > Mengapa memilih metrik setelah melihat data dianggap p-hacking? Apa bedanya dengan eksplorasi data yang sah?
 
 **Jawaban:**
-> ___________________________________________________
-> ___________________________________________________
+Memilih metrik setelah melihat data dianggap *p-hacking* karena peneliti cenderung melakukan manipulasi dengan hanya memilih variabel yang memberikan hasil signifikan (mendukung hipotesis) dan membuang data yang tidak mendukung agar penelitian terlihat "berhasil". Hal ini mencederai objektivitas dan kejujuran ilmiah. Perbedaannya dengan eksplorasi data yang sah adalah eksplorasi bertujuan untuk mencari wawasan atau pola baru dari data tanpa mengubah atau mengklaim hasil hipotesis utama yang sudah ditetapkan di awal eksperimen secara *pre-registered*.
