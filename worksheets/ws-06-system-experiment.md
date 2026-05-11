@@ -67,25 +67,25 @@ Jika variabel tidak bisa di-map ke komponen apapun → arsitektur perlu didesain
 ```
 SYSTEM-EXPERIMENT MAPPING
 
-Research Question: ____________________
+Research Question: Bagaimana perbandingan efisiensi kognitif alur checkout model Single-Screen (GoFood) dan Multi-Step (GrabFood) pada Generasi Z menggunakan metrik Time on Task dan System Usability Scale (SUS)?
 
 Variable → Component Mapping:
 | Variabel | Tipe | Komponen Sistem | Cara Manipulasi/Pengukuran |
 |----------|------|-----------------|---------------------------|
-|          | IV   |                 |                           |
-|          | DV   |                 |                           |
-|          | CV   |                 |                           |
+| Model Alur Checkout (Single-Screen vs Multi-Step) | IV   | Antarmuka Aplikasi (GoFood & GrabFood) | Meminta responden menyelesaikan tugas transaksi pada masing-masing jenis alur antarmuka secara bergantian |
+| Efisiensi Kognitif dan Kepuasan Pengguna | DV   | Instrumen Evaluasi (Screen Recorder & Kuesioner SUS) | Mengukur durasi pengerjaan tugas (Time on Task dalam detik) via rekaman video dan menghitung skor SUS pasca-tes |
+| Lingkungan Pengujian dan Karakteristik Responden | CV   | Protokol Eksperimen & Spesifikasi Device | Menyamakan instruksi tugas, menyamakan rentang usia responden (Gen Z), serta mengunci jenis koneksi internet dan OS smartphone |
 
 4 Prinsip Desain:
-  [ ] Traceability — Setiap komponen bisa ditelusuri ke variabel
-  [ ] Variable Isolation — IV bisa diubah tanpa mengubah CV
-  [ ] Measurement Integration — Pengukuran DV built-in
-  [ ] Reproducibility — Setup bisa direkonstruksi
+  [X] Traceability — Setiap komponen bisa ditelusuri ke variabel
+  [X] Variable Isolation — IV bisa diubah tanpa mengubah CV
+  [X] Measurement Integration — Pengukuran DV built-in
+  [X] Reproducibility — Setup bisa direkonstruksi
 
 Experimental Setup:
-  Input data     : ____________________
-  Parameter      : ____________________
-  Output format  : ____________________
+  Input data     : Skenario tugas (task scenario) checkout pembelian menu makanan yang seragam pada kedua aplikasi
+  Parameter      : Responden Gen Z aktif, koneksi internet stabil (>10 Mbps), versi aplikasi terbaru yang digunakan pada smartphone
+  Output format  : Catatan waktu penyelesaian tugas (file .xlsx) dan tabulasi skor SUS (skala 0-100)
 ```
 
 ---
@@ -94,16 +94,16 @@ Experimental Setup:
 
 Gunakan RQ dan variabel dari WS-05. Petakan ke komponen sistem.
 
-**RQ:** __________________________________________________
+**RQ:** Bagaimana perbandingan efisiensi kognitif alur checkout model Single-Screen (GoFood) dan Multi-Step (GrabFood) pada Generasi Z menggunakan metrik Time on Task dan System Usability Scale (SUS)?
 
 | Variabel | Tipe | Komponen Sistem | Cara Manipulasi / Pengukuran |
 |----------|------|-----------------|---------------------------|
-| *Contoh: Jenis model* | *IV* | *Modul classifier (swap RF ↔ CNN)* | *Ganti config `model_type`* |
-| | DV | | |
-| | CV | | |
+| Model Alur Checkout (Single-Screen vs Multi-Step) | IV | Antarmuka Aplikasi (GoFood & GrabFood) | Meminta responden menyelesaikan tugas transaksi pada masing-masing jenis alur antarmuka secara bergantian |
+| Efisiensi Kognitif dan Kepuasan Pengguna | DV | Instrumen Evaluasi (Screen Recorder & Kuesioner SUS) | Mengukur durasi pengerjaan tugas (Time on Task dalam detik) via rekaman video dan menghitung skor SUS pasca-tes |
+| Lingkungan Pengujian dan Karakteristik Responden | CV | Protokol Eksperimen & Spesifikasi Device | Menyamakan instruksi tugas, menyamakan rentang usia responden (Gen Z), serta mengunci jenis koneksi internet dan OS smartphone |
 
-**Apakah semua variabel bisa di-map?** [ ] Ya / [ ] Tidak
-> Jika tidak, komponen apa yang perlu ditambahkan? _________
+**Apakah semua variabel bisa di-map?** [X] Ya / [ ] Tidak
+> Jika tidak, komponen apa yang perlu ditambahkan? Semua variabel penelitian sudah berhasil dipetakan ke dalam komponen pengujian dengan lengkap.
 
 ---
 
@@ -113,14 +113,14 @@ Evaluasi desain sistem terhadap 4 prinsip.
 
 | Prinsip | Status | Bukti / Penjelasan |
 |---------|--------|-------------------|
-| Traceability | *Contoh: ✅ — setiap modul punya label variabel* | |
-| Modularity | | |
-| Controllability | | |
-| Measurability | | |
+| Traceability | ✅ Terpenuhi | Setiap data yang dikumpulkan (durasi detik dan nilai kuesioner) secara langsung ditujukan untuk mengukur variabel efisiensi kognitif (Time on Task) dan tingkat kepuasan (SUS). |
+| Modularity | ✅ Terpenuhi | Antarmuka aplikasi yang diuji (IV) dapat diswap atau diganti tanpa memengaruhi instrumen kuesioner evaluasi (DV) maupun lembar perhitungan statistik yang digunakan. |
+| Controllability | ✅ Terpenuhi | Variabel kontrol (CV) dikunci menggunakan instruksi pengujian (test script) yang seragam, pembatasan spesifikasi sistem operasi handphone, serta standar koneksi internet yang ditentukan. |
+| Measurability | ✅ Terpenuhi | Pengukuran menghasilkan data kuantitatif yang objektif berupa angka durasi waktu penyelesaian (detik) dan skor numerik SUS yang presisi. |
 
-**Prinsip mana yang paling sulit dipenuhi?** _______________
+**Prinsip mana yang paling sulit dipenuhi?** Controllability (Kontrol terhadap lingkungan pengujian responden)
 **Strategi untuk mengatasinya:**
-> ___________________________________________________
+> Menyusun panduan instruksi tertulis yang sangat jelas dan ringkas (test script) yang wajib dibaca responden sebelum memulai pengujian, serta melakukan sesi pengujian di ruangan yang tenang guna meminimalisir distraksi eksternal.
 
 ---
 
@@ -130,14 +130,14 @@ Jika sistem memiliki 3 komponen utama, rencanakan ablation study.
 
 | Kondisi | Komponen A | Komponen B | Komponen C | Hasil yang Diharapkan |
 |---------|-----------|-----------|-----------|----------------------|
-| Full | *Contoh: ✅ CNN* | *Contoh: ✅ Temporal features* | *Contoh: ✅ Z-score norm* | *Baseline penuh* |
-| – A | ❌ (ganti RF) | ✅ | ✅ | |
-| – B | ✅ | ❌ (tanpa temporal) | ✅ | |
-| – C | ✅ | ✅ | ❌ (tanpa normalisasi) | |
+| Full | ✅ Alur Checkout (GoFood & GrabFood) | ✅ Pengukuran Waktu (Time on Task) | ✅ Kuesioner Kepuasan (SUS) | Evaluasi usability komprehensif yang membandingkan performa objektif (kecepatan) dan kepuasan subjektif pengguna. |
+| – A | ❌ (Tanpa alur pembanding/hanya satu alur) | ✅ | ✅ | Tidak didapatkan data komparasi efisiensi antarmuka, hanya berupa evaluasi aplikasi tunggal. |
+| – B | ✅ | ❌ (Tanpa pengukur waktu) | ✅ | Hanya mendapatkan data kepuasan subjektif responden tanpa pembuktian efisiensi kecepatan nyata (detik). |
+| – C | ✅ | ✅ | ❌ (Tanpa kuesioner SUS) | Hanya mendapatkan data durasi kecepatan interaksi tanpa mengetahui kenyamanan dan persepsi kepuasan pengguna. |
 
-**Komponen mana yang diprediksi paling berkontribusi?** _____
+**Komponen mana yang diprediksi paling berkontribusi?** Komponen A (Alur Checkout)
 **Mengapa?**
-> ___________________________________________________
+> Karena alur checkout (Single-Screen vs Multi-Step) merupakan variabel bebas (IV) yang menjadi objek utama penelitian. Tanpa adanya manipulasi atau perbedaan pada komponen alur antarmuka ini, eksperimen komparatif tidak memiliki dasar pembanding untuk menguji hipotesis efisiensi kognitif.
 
 ---
 
@@ -146,5 +146,6 @@ Jika sistem memiliki 3 komponen utama, rencanakan ablation study.
 > Apa risiko jika sistem dibangun seperti produk (monolitik, fitur lengkap) lalu baru dilakukan eksperimen? Mengapa arsitektur modular penting untuk riset?
 
 **Jawaban:**
-> ___________________________________________________
-> ___________________________________________________
+> Risiko terbesar jika sistem dibangun seperti produk monolitik yang lengkap sebelum eksperimen dilakukan adalah munculnya bias variabel (*confounding variables* atau *noise*). Ketika seluruh fitur digabungkan menjadi satu kesatuan yang rumit, kita akan sangat kesulitan untuk mengidentifikasi dan membuktikan fitur atau komponen spesifik mana yang sebenarnya memengaruhi perilaku pengguna atau performa sistem. Selain itu, jika terjadi kegagalan atau kesalahan dalam satu modul, seluruh sistem pengujian dapat terganggu sehingga membuang waktu dan sumber daya yang besar.
+> 
+> Arsitektur modular sangat penting untuk riset karena memungkinkan adanya **isolasi variabel** yang bersih. Melalui modularitas, peneliti dapat dengan mudah mengganti, mematikan, atau memodifikasi komponen tertentu (seperti menukar alur antarmuka atau instrumen pengukuran) secara independen tanpa harus merusak atau mendesain ulang keseluruhan arsitektur eksperimen. Hal ini menjamin bahwa pengujian tetap efisien, valid secara ilmiah, dan mudah untuk direproduksi kembali (*reproducible*).
