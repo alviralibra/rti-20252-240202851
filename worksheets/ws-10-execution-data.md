@@ -164,3 +164,5 @@ Ya, dalam tugas-tugas praktikum awal atau pembuatan prototipe sederhana, kadang 
 
 **Yang akan dilakukan berbeda:**
 Pada riset komparasi GoFood dan GrabFood kali ini, saya menerapkan metode *multiple run* dengan mengumpulkan data dari 35 responden berbeda yang dibagi rata lewat urutan *Counterbalancing*. Dengan menguji banyak orang, variasi data individual (seperti kecepatan jari, kondisi sinyal HP, atau tingkat keakraban dengan aplikasi) akan saling menyeimbangkan. Pengujian berulang ini membuat nilai rata-rata (*mean*) yang dihasilkan jauh lebih stabil, objektif, dan dapat dipercaya secara statistik saat diolah menggunakan uji Paired Samples T-Test di SPSS nanti.
+
+### Selesai
