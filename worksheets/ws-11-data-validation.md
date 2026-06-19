@@ -66,28 +66,28 @@ Jika gagal di langkah awal → tidak perlu lanjut.
 DATA VALIDATION CHECKLIST
 
 Completeness:
-  [ ] Semua skenario tercakup
-  [ ] Jumlah run sesuai rencana
-  [ ] Tidak ada file output hilang
-  Missing: ____ dari ____ data points
+  [✓] Semua skenario tercakup
+  [✓] Jumlah run sesuai rencana
+  [✓] Tidak ada file output hilang
+  Missing: 0 dari 70 data points
 
 Format Consistency:
-  [ ] Semua file format sama (CSV/JSON/...)
-  [ ] Header konsisten
-  [ ] Tipe data konsisten (numerik tetap numerik)
+  [✓] Semua file format sama (CSV/JSON/...)
+  [✓] Header konsisten
+  [✓] Tipe data konsisten (numerik tetap numerik)
 
 Range & Logic:
-  [ ] Nilai dalam range masuk akal
-  [ ] Tidak ada waktu negatif
-  [ ] Metrik 0–100%, tidak di luar range
-  Anomali ditemukan: ____________________
+  [✓] Nilai dalam range masuk akal
+  [✓] Tidak ada waktu negatif
+  [✓] Metrik 0–100%, tidak di luar range
+  Anomali ditemukan: Format waktu mentah berbentuk menit:detik (00:17) harus diekstraksi menjadi angka numerik detik murni (17) agar bisa terbaca dan dihitung oleh SPSS.
 
 Cross-Validation:
-  [ ] Run identik → hasil mendekati
-  [ ] Trend konsisten dengan ekspektasi teori
+  [✓] Run identik → hasil mendekati
+  [✓] Trend konsisten dengan ekspektasi teori
 
 Keputusan:
-  [ ] Data siap analisis
+  [✓] Data siap analisis
   [ ] Perlu cleaning
   [ ] Perlu re-run (skenario: ____)
 ```
@@ -102,13 +102,13 @@ Verifikasi apakah semua data yang direncanakan sudah terkumpul.
 |----------|-----------------|-------------|---------|--------|
 | *Contoh: BERT, DS-1* | *10* | *10* | *0* | *—* |
 | *LSTM, DS-3* | *10* | *8* | *2* | *OOM pada run 7 & 9* |
-| | | | | |
-| | | | | |
+| Checkout GrabFood | 35 | 35 | 0 | — |
+| Checkout GoFood | 35 | 35 | 0 | — |
 
-**Total expected:** ____ | **Total actual:** ____ | **Missing:** ____
+**Total expected:** 70 | **Total actual:** 70 | **Missing:** 0
 
 **Keputusan untuk data missing:**
-> ___________________________________________________
+> Tidak ada data yang hilang (missing data = 0). Seluruh data dari 35 responden berhasil terekam secara lengkap untuk kedua skenario aplikasi sehingga data memenuhi syarat aspek completeness dan siap untuk dianalisis.
 
 ---
 
@@ -116,21 +116,21 @@ Verifikasi apakah semua data yang direncanakan sudah terkumpul.
 
 Periksa data Anda untuk anomali. Gunakan metode IQR atau z-score.
 
-**Dataset sampel (atau data Anda sendiri):**
+**Dataset sampel (atau data Anda own):**
 
 | Run | Accuracy (%) |
 |-----|-------------|
-| 1 | *91.2* |
-| 2 | *90.8* |
-| 3 | *91.5* |
-| 4 | *78.3* |
-| 5 | *91.0* |
+| 1 | 17.0 |
+| 2 | 21.0 |
+| 3 | 18.0 |
+| 4 | 19.0 |
+| 5 | 22.0 |
 
 **Deteksi outlier:**
-- Q1 = ____ | Q3 = ____ | IQR = ____
-- Batas bawah (Q1 - 1.5×IQR) = ____
-- Batas atas (Q3 + 1.5×IQR) = ____
-- Outlier terdeteksi: ____
+- Q1 = 18.0 | Q3 = 21.0 | IQR = 3.0
+- Batas bawah (Q1 - 1.5×IQR) = 13.5
+- Batas atas (Q3 + 1.5×IQR) = 25.5
+- Outlier terdeteksi: Tidak Ada Outlier
 
 **Investigasi (untuk setiap outlier):**
 
@@ -144,12 +144,12 @@ Periksa data Anda untuk anomali. Gunakan metode IQR atau z-score.
 
 Buat laporan validasi ringkas untuk dataset eksperimen Anda.
 
-**1. Completeness:** ____% data terkumpul
-**2. Format:** [ ] Konsisten / [ ] Ada inkonsistensi: ____
-**3. Range check (anomali):** ____
-**4. Logic check:** [ ] Parameter sesuai plan / [ ] Ada ketidaksesuaian: ____
+**1. Completeness:** 100% data terkumpul
+**2. Format:** [✓] Konsisten / [ ] Ada inkonsistensi: —
+**3. Range check (anomali):** Tidak ditemukan data durasi bernilai negatif dan tidak ada total skor kuesioner SUS yang berada di luar rentang standar 0–100.
+**4. Logic check:** [✓] Parameter sesuai plan / [ ] Ada ketidaksesuaian: —
 
-**Kesimpulan:** [ ] Data siap analisis / [ ] Perlu tindakan: ____
+**Kesimpulan:** [✓] Data siap analisis / [ ] Perlu tindakan: —
 
 ---
 
@@ -157,5 +157,6 @@ Buat laporan validasi ringkas untuk dataset eksperimen Anda.
 
 > Apa perbedaan antara "data yang benar" dan "data yang dipercaya"? Mengapa proses validasi formal diperlukan meskipun data dikumpulkan secara otomatis?
 
-> ___________________________________________________
-> ___________________________________________________
+> "Data yang benar" (raw data) adalah data faktual yang direkam apa adanya oleh instrumen pengumpul data (seperti format menit:detik 00:17 di lembar excel). Sedangkan "data yang dipercaya" (trusted data) adalah data yang telah lolos pipeline validasi formal, dibersihkan dari anomali format, dan disesuaikan sehingga siap diolah secara akurat tanpa memicu bias atau eror logika.
+> 
+> Proses validasi formal tetap diperlukan meskipun data dikumpulkan otomatis karena sistem perekaman otomatis tidak menjamin data terbebas dari kesalahan tipe data (seperti spasi ilegal atau karakter yang tidak terbaca oleh software statistik) serta tidak mampu mendeteksi keabnormalan logika operasional eksperimen di lapangan. Validasi formal memastikan integritas data benar-benar layak sebelum ditarik kesimpulan ilmiah.
