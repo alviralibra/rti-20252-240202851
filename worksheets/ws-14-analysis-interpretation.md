@@ -80,35 +80,43 @@ ANALYSIS & INTERPRETATION
 1. Statistik Deskriptif:
    | Skenario | Mean | Std | Median | Min | Max | n |
    |----------|------|-----|--------|-----|-----|---|
-   |          |      |     |        |     |     |   |
+   | Durasi Checkout Grab | 19.54 | 1.945 | 19.50 | 15.50 | 23.40 | 35 |
+   | Durasi Checkout GoFood | 13.71 | 1.506 | 13.50 | 11.20 | 16.80 | 35 |
+   | Total Skor SUS Grab | 47.42 | 8.285 | 47.50 | 30.00 | 65.00 | 35 |
+   | Total Skor SUS GoFood | 73.14 | 11.220 | 75.00 | 50.00 | 95.00 | 35 |
 
 2. Uji Hipotesis:
-   Uji yang digunakan  : ____________________
-   Justifikasi          : ____________________
-   Hasil: p = ____, effect size (d/r/η²) = ____
-   CI 95%               : [____, ____]
+   Uji yang digunakan  : Paired Samples t-test
+   Justifikasi          : Membandingkan rata-rata dari dua kondisi interaksi yang berbeda (Grab vs GoFood) pada kelompok subjek pengguna Gen Z yang sama (data berpasangan).
+   Hasil: 
+   - Durasi Checkout : p = .000 (p < 0.001), effect size (Cohen's d) = 3.82
+   - Total Skor SUS  : p = .000 (p < 0.001), effect size (Cohen's d) = -2.60
+   CI 95%               : [5.470, 6.187] (Durasi) dan [-30.487, -20.941] (Skor SUS)
 
 3. Keputusan:
-   [ ] H₀ ditolak → H₁ diterima
+   [✓] H₀ ditolak → H₁ diterima
    [ ] H₀ tidak ditolak
 
 4. Interpretasi:
-   Hubungan ke RQ       : ____________________
-   Practical significance: ____________________
-   Perbandingan literatur: ____________________
+   Hubungan ke RQ       : Terbukti secara statistik bahwa terdapat perbedaan efisiensi kognitif (durasi) dan tingkat kepuasan (skor SUS) yang signifikan antara proses checkout GoFood dan GrabFood pada Gen Z.
+   Practical significance: Proses checkout GoFood secara riil ~5.83 detik lebih cepat daripada GrabFood. Di sisi lain, pengalaman pengguna (UX) GoFood masuk kategori "Good/Acceptable" (73.14), sementara GrabFood tertinggal di kategori "Poor/Not Acceptable" (47.42).
+   Perbandingan literatur: Hasil ini selaras dengan Hick's Law dan Aesthetic-Usability Effect, di mana minimalisasi langkah interaksi dan kejelasan visual pada GoFood berhasil memangkas *cognitive load* pengguna dibandingkan alur GrabFood.
 
 5. Limitation:
    | Jenis | Ancaman | Dampak | Mitigasi |
    |-------|---------|--------|----------|
-   |       |         |        |          |
+   | External Validity | Karakteristik sampel homogen (mahasiswa IT) | Pola pengujian berisiko kurang merepresentasikan Gen Z non-teknis | Menambah variasi sebaran latar belakang responden non-IT pada riset mendatang |
+   | Construct Validity | Pengukuran durasi manual via screen recording | Risiko deviasi minor hitungan waktu akibat delay respons manusia | Menggunakan tools *event-logger* otomatis yang tertanam di sistem |
 
 6. Failure Analysis (jika H₀ tidak ditolak):
-   Penyebab potensial  : ____________________
-   Boundary condition   : ____________________
-   Insight              : ____________________
+   Penyebab potensial  : N/A (Hipotesis didukung penuh dan terbukti signifikan)
+   Boundary condition   : N/A
+   Insight              : N/A
 ```
 
 ---
+
+## Latihan 1 — Pemilihan Uji Statistik
 
 ## Latihan 1 — Pemilihan Uji Statistik
 
@@ -116,13 +124,13 @@ Tentukan uji statistik yang tepat untuk eksperimen Anda.
 
 | Pertanyaan | Jawaban |
 |-----------|---------|
-| Berapa grup yang dibandingkan? | *Contoh: 3 (BERT, LSTM, SVM)* |
-| Apakah data berpasangan (paired)? | |
-| Apakah distribusi normal? (uji normalitas) | |
-| **Uji yang dipilih:** | |
-| **Justifikasi:** | |
+| Berapa grup yang dibandingkan? | 2 kondisi aplikasi (GoFood vs GrabFood) |
+| Apakah data berpasangan (paired)? | Ya (Responden yang sama menguji kedua aplikasi) |
+| Apakah distribusi normal? (uji normalitas) | Ya (Hasil uji normalitas SPSS menunjukkan data berdistribusi normal) |
+| **Uji yang dipilih:** | Paired Samples t-test |
+| **Justifikasi:** | Digunakan karena penelitian membandingkan nilai rata-rata dari dua variabel/kondisi yang saling berhubungan (berpasangan) pada satu kelompok subjek yang sama. |
 
-**Effect size yang akan dilaporkan:** [ ] Cohen's d / [ ] Eta-squared / [ ] Lainnya: ____
+**Effect size yang akan dilaporkan:** [✓] Cohen's d / [ ] Eta-squared / [ ] Lainnya: ____
 
 ---
 
@@ -131,20 +139,22 @@ Tentukan uji statistik yang tepat untuk eksperimen Anda.
 Gunakan data berikut (atau data riil Anda) untuk berlatih interpretasi.
 
 **Data:**
-| Model | Accuracy (mean ± std) | n |
-|-------|----------------------|---|
-| A | 89.2 ± 1.5 | 10 |
-| B | 87.8 ± 2.1 | 10 |
+| Kondisi Aplikasi / Metrik | Mean ± Std | n |
+|---------------------------|------------|---|
+| Durasi Checkout Grab | 19.54 ± 1.95s | 35 |
+| Durasi Checkout GoFood | 13.71 ± 1.51s | 35 |
+| Total Skor SUS Grab | 47.42 ± 8.28 | 35 |
+| Total Skor SUS GoFood | 73.14 ± 11.22 | 35 |
 
-p = 0.045, Cohen's d = 0.74, CI 95% = [0.03, 2.77]
+p < 0.001, Cohen's d = 3.82 (Durasi) & -2.60 (SUS), CI 95% = [5.47, 6.19] & [-30.49, -20.94]
 
 | Aspek | Interpretasi |
 |-------|-------------|
-| Signifikansi statistik | *Contoh: p < 0.05 → signifikan pada α=0.05* |
-| Effect size | *Contoh: d=0.74 → medium-to-large effect* |
-| Practical significance | |
-| Hubungan ke RQ | |
-| Perbandingan literatur | |
+| Signifikansi statistik | *p < 0.001 → Kedua metrik (Durasi dan SUS) menunjukkan perbedaan yang sangat signifikan secara statistik pada α=0.05.* |
+| Effect size | *d = 3.82 (Durasi) & -2.60 (SUS) → Keduanya memiliki efek yang sangat besar (ekstrem).* |
+| Practical significance | Secara praktis, GoFood memotong waktu transaksi ~5.83 detik lebih cepat. Dari sisi kepuasan, GoFood masuk kategori "Good/Acceptable" (73.14), sedangkan GrabFood berada di kategori "Poor/Not Acceptable" (47.42), menandakan masalah UX yang nyata pada alur GrabFood. |
+| Hubungan ke RQ | Menjawab Research Question (RQ) secara menyeluruh bahwa terdapat perbedaan efisiensi kognitif (durasi) sekaligus kenyamanan aplikasi (skor SUS) yang masif antara kedua platform pada pengguna Gen Z. |
+| Perbandingan literatur | Hasil ini selaras dengan *Hick's Law* dan *Aesthetic-Usability Effect*, di mana pengurangan langkah pemrosesan informasi (durasi lebih pendek) berkorelasi positif dengan tingginya persepsi kegunaan sistem (skor SUS lebih tinggi). |
 
 ---
 
@@ -156,18 +166,18 @@ Latih kemampuan failure analysis: hipotesis TIDAK didukung. Apa yang bisa dipela
 
 | Pertanyaan | Jawaban |
 |-----------|---------|
-| Apakah ini "gagal"? | *Contoh: Bukan gagal total — hipotesis tidak terdukung adalah temuan yang valid dan bisa menjadi kontribusi.* |
-| Kemungkinan penyebab? | *Contoh: Metode baru menambah kompleksitas komputasi (+40% waktu) tanpa peningkatan F1 yang cukup — overhead tidak sebanding.* |
-| Boundary condition? | *Contoh: Metode ini hanya efektif ketika data ≥ 10.000 record; di dataset kecil (<1.000), baseline lebih stabil.* |
-| Insight yang bisa diambil? | *Contoh: Ada trade-off ukuran data vs kompleksitas — rekomendasikan hybrid approach yang adaptif berdasarkan ukuran dataset.* |
-| Apakah layak dilaporkan? Mengapa? | *Contoh: Ya — negative result + boundary condition analysis adalah kontribusi riset yang diakui komunitas (ex: ACL, SIGIR). Mencegah riset duplikasi yang berulang.* |
+| Apakah ini "gagal"? | Bukan gagal total — hipotesis tidak terdukung adalah temuan eksperimental yang valid dan objektif, serta tetap dihitung sebagai kontribusi ilmiah ilmiah. |
+| Kemungkinan penyebab? | Arsitektur metode baru memperkenalkan parameter yang terlalu kompleks (*over-parameterization*), memicu fenomena *overfitting* ringan pada dataset pengujian yang digunakan. |
+| Boundary condition? | Metode baru ini kurang optimal jika diimplementasikan pada dataset berskala kecil dengan sebaran fitur yang padat; metode baseline terbukti jauh lebih kokoh (*robust*). |
+| Insight yang bisa diambil? | Terdapat *trade-off* kritis antara kompleksitas arsitektur model dengan volume data latih. Penyederhanaan komponen regularisasi atau beralih ke pendekatan hibrida sangat direkomendasikan. |
+| Apakah layak dilaporkan? Mengapa? | Ya, sangat layak — Pelaporan *negative result* dan batas kondisi operasional (*boundary condition*) membantu komunitas peneliti menghindari replikasi galat yang sama dan memberikan arahan optimasi yang benar. |
 
 **Limitation terkait:**
 | Jenis | Ancaman | Dampak |
 |-------|---------|--------|
-| *Contoh: Statistical* | *Contoh: Hanya 5 run per skenario* | *Power test rendah* |
-| | | |
-| | | |
+| Statistical | Hanya menjalankan 5 kali *running* per skenario pengujian | *Statistical power* menjadi rendah dan rentang ketidakpastian analisis melebar |
+| External Validity | Pengujian terbatas pada satu repositori dataset yang homogen | Generalisasi model baru pada variasi domain data lain belum teruji dengan kuat |
+| Construct Validity | Evaluasi performa hanya bersandar penuh pada metrik F1-score | Dimensi efisiensi penggunaan memori dan beban komputasi belum terukur secara berimbang |
 
 ---
 
@@ -175,5 +185,6 @@ Latih kemampuan failure analysis: hipotesis TIDAK didukung. Apa yang bisa dipela
 
 > Apakah "failure" dalam riset benar-benar gagal, atau justru kontribusi? Bagaimana failure analysis mengubah cara Anda melihat hasil negatif?
 
-> ___________________________________________________
-> ___________________________________________________
+> *Failure* atau kegagalan dalam riset—seperti hipotesis yang ditolak atau metode baru yang performanya di bawah *baseline*—bukanlah sebuah kegagalan total, melainkan sebuah kontribusi ilmiah yang sangat berharga. Dalam dunia penelitian, mengetahui "apa yang tidak berhasil" dan "di mana batas kemampuan suatu metode" (*boundary conditions*) memiliki derajat kepentingan yang sama dengan menemukan keberhasilan. 
+> 
+> *Failure analysis* mengubah cara pandang terhadap hasil negatif dari yang semula dianggap sebagai "produk cacat/salah" menjadi sebuah *insight* objektif. Analisis kegagalan yang mendalam memaksa peneliti untuk membedah anomali data, menguji kembali asumsi dasar, serta memetakan batasan sistem secara jujur. Melaporkan hasil negatif beserta analisisnya justru menyelamatkan peneliti lain dari jebakan duplikasi riset yang sia-sia, sekaligus membuka jalan bagi pengembangan pendekatan hibrida atau solusi baru yang lebih adaptif di masa depan.
